@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+import os
 from flask_cors import CORS
 from model import downloadData, predict, FeatureEngineering
 
@@ -27,6 +28,7 @@ def call_model():
     return jsonify(result)
 
 if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 5000))
     print('Backend server is online!')
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=port)
 
